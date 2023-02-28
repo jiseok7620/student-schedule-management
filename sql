@@ -1,0 +1,25 @@
+1. 인원테이블(student)
+CREATE TABLE IF NOT EXISTS student \
+(id integer PRIMARY KEY, name text, sex text, age integer, school text, grade integer, address1 text, \
+address2 text, email text, number text, parentName text, parentSex text, parentNumber text, registDate text)
+
+:id(primary key), 이름(name), 성별(sex), 나이(age), 학교(school), 학년(grade), 주소(address1), 상세주소(address2),
+이메일(email), 전화번호(number),부모님성명(parentName), 부모님성별(parentSex), 부모님번호(parentNumber), 등록일(registDate)
+
+2. 인원당 사용교재테이블
+CREATE TABLE IF NOT EXISTS textbookperman
+
+:id(foreign key), book1, book2, book3, book4, book5, book6, book7, book8, book9, book10
+
+3. 진도 테이블
+CREATE TABLE IF NOT EXISTS progress
+:id(foreign key), 교재명(bookname), 시작페이지(startPage), 끝페이지(endPage), 일시(datetime)
+
+4. 시험 테이블
+CREATE TABLE IF NOT EXISTS exam
+:id(foreign key), 시험명(testName), 단원(subject), 점수(score), 일시(datetime)
+
+5. 교재 테이블
+CREATE TABLE IF NOT EXISTS textbook
+:교재명(bookname), 총페이지수(allPage), 시작페이지(startPage), 끝페이지(endPage), 단원명(subjectName), 단원세부(subjectName2)
+
