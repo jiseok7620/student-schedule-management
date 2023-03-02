@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS exam
 
 5. 교재 테이블
 CREATE TABLE IF NOT EXISTS textbook
-:교재명(bookname), 총페이지수(allPage), 시작페이지(startPage), 끝페이지(endPage), 단원명(subjectName), 단원세부(subjectName2)
+:교재명(bookname), 대단원명(subjectName), 부단원(subjectName2), 시작페이지(startPage), 끝페이지(endPage), 총페이지수(allPage),
+학교(school), 학년(grade)
 

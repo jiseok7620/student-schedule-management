@@ -4,8 +4,10 @@ import sqlite3
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 import enrollmodal
+import bookmodal
 import buttonobject
 import traceback
+
 
 form_class = uic.loadUiType("pyqt_ui/main.ui")[0]
 
@@ -23,9 +25,15 @@ class Main(QMainWindow, form_class):
         conn = sqlite3.connect("inmanage.db", isolation_level=None) # isolation_level=None : 자동커밋
         cs = conn.cursor()  # 커서 획득
         # 테이블이 존재하지 않다면 테이블 만들기
+        # 1. 학생테이블
         cs.execute("CREATE TABLE IF NOT EXISTS student \
                 (id integer PRIMARY KEY, name text, sex text, age integer, school text, grade integer, address1 text, \
                 address2 text, email text, number text, parentName text, parentSex text, parentNumber text, registDate text)")
+        # 2. 교재테이블
+        cs.execute("CREATE TABLE IF NOT EXISTS textbook \
+                (no integer, bookname text, subjectName text, subjectName2 text, startPage integer, endPage integer, allPage integer, \
+                school text, grade text)")
+
         conn.close() # db close
 
         # 테이블 설정
@@ -89,7 +97,7 @@ class Main(QMainWindow, form_class):
 
     def menuClick(self, what):
         if what == "book":
-            pass
+            modal = bookmodal.MyModal(self) # 등록 모달 띄우기
         elif what == "save":
             pass
         elif what == "capture":
