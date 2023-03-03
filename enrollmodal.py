@@ -86,9 +86,6 @@ class MyModal(QDialog):
 
 
 
-
-
-
     def btnEnroll(self):
         try:
             # db connect
@@ -127,9 +124,6 @@ class MyModal(QDialog):
         except:
             reply = QMessageBox.about(self, "Error!!", "저장에 실패하였습니다.")
             traceback.print_exc()
-
-
-
 
 
 

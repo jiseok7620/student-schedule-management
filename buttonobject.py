@@ -7,8 +7,6 @@ class MyApp(QWidget):
         self.initUI()
 
 
-
-
     def btnsearchClick(self, conSchool, conGrade):
         conn = sqlite3.connect("inmanage.db", isolation_level=None)
         cs = conn.cursor()
@@ -17,14 +15,10 @@ class MyApp(QWidget):
             cs.execute("SELECT * FROM student")
             returnList = cs.fetchall()
 
-            print(returnList)
             # db close
             conn.close()
 
             return returnList
-
-
-
 
 
     def btndeleteClick(self, mainid, mainname):
@@ -42,3 +36,9 @@ class MyApp(QWidget):
         # db close
         conn.close()
 
+
+    def btnprodeleteClick(self):
+        pass
+
+    def btnproaddClick(self):
+        pass

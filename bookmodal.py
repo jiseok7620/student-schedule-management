@@ -133,11 +133,12 @@ class MyModal(QDialog):
                     allpage = self.allPage.text()
                     school = self.comboSchool.currentText()
                     grade = self.comboGrade.currentText()
+                    bookid = bookname + school + grade
                     insert_list = (
-                        (no, bookname, subjectname, subjectname2, startpage, endpage, allpage, school, grade)
+                        (bookid, no, bookname, subjectname, subjectname2, startpage, endpage, allpage, school, grade)
                     )
-                    cs.execute("INSERT INTO textbook(no, bookname, subjectName, subjectName2, startPage, endPage, allPage, school, grade) \
-                                                    VALUES(?,?,?,?,?,?,?,?,?)", insert_list)
+                    cs.execute("INSERT INTO textbook(bookid, no, bookname, subjectName, subjectName2, startPage, endPage, allPage, school, grade) \
+                                                    VALUES(?,?,?,?,?,?,?,?,?,?)", insert_list)
 
                 # db close
                 conn.close()
@@ -223,11 +224,11 @@ class MyModal(QDialog):
             self.tableWidget.setRowCount(len(textbooklist))
             num = 0
             for tbl in textbooklist:
-                self.tableWidget.setItem(num, 0, QTableWidgetItem(str(tbl[0])))
-                self.tableWidget.setItem(num, 1, QTableWidgetItem(str(tbl[2])))
-                self.tableWidget.setItem(num, 2, QTableWidgetItem(str(tbl[3])))
-                self.tableWidget.setItem(num, 3, QTableWidgetItem(str(tbl[4])))
-                self.tableWidget.setItem(num, 4, QTableWidgetItem(str(tbl[5])))
+                self.tableWidget.setItem(num, 0, QTableWidgetItem(str(tbl[1])))
+                self.tableWidget.setItem(num, 1, QTableWidgetItem(str(tbl[3])))
+                self.tableWidget.setItem(num, 2, QTableWidgetItem(str(tbl[4])))
+                self.tableWidget.setItem(num, 3, QTableWidgetItem(str(tbl[5])))
+                self.tableWidget.setItem(num, 4, QTableWidgetItem(str(tbl[6])))
                 num += 1
 
             # db close

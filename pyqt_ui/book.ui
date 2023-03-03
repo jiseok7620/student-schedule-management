@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>540</height>
+    <width>555</width>
+    <height>482</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,13 @@
         <widget class="QComboBox" name="comboBooklist"/>
        </item>
        <item>
-        <widget class="QListWidget" name="listWidget"/>
+        <widget class="QListWidget" name="listWidget">
+         <item>
+          <property name="text">
+           <string>-교재목록-</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </item>
