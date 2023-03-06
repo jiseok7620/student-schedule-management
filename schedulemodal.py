@@ -5,14 +5,16 @@ import sqlite3
 import traceback
 
 class MyModal(QDialog):
-    def __init__(self, parent, nameid, bookname, bookid, datetime, globalSchool, globalGrade):
+    def __init__(self, parent, nameid, bookname, bookid, datetime, globalSchool, globalGrade, seq):
         try:
             super(MyModal, self).__init__(parent)
             option_ui = 'pyqt_ui/schedule.ui'
             uic.loadUi(option_ui, self)
             self.show()
+            self.object = parent
 
             # 전역변수 선언
+            self.seq = seq
             self.prepro = ""
             self.aftpro = ""
             self.resultpro = ""
@@ -30,13 +32,12 @@ class MyModal(QDialog):
             # 교재 테이블에서 값 가져오기
             cs.execute("SELECT * FROM textbook WHERE bookid =?", (bookid,))
             booklist = cs.fetchall() # 해당 교재의 전체 단원 가져오기
-            print(booklist)
 
             cs.execute("SELECT startPage, endPage FROM progress WHERE id =? and bookname =? and \
                     strftime('%Y-%m-%d', datetime, 'localtime') <= strftime('%Y-%m-%d', ?, 'localtime')", (nameid, bookid,datetime,))
             progresslist = cs.fetchall() # 해당 학생의 해당 교재 진도율 가져오기
-            print(progresslist)
 
+            resultlist = []
             for i in range(0, len(booklist)):
                 self.prepro = "0"
                 self.aftpro = "0"
@@ -51,11 +52,7 @@ class MyModal(QDialog):
                     self.resultpro = "-"
                 else :
                     self.resultpro = "진행중"
-                print(booklist[i])
-                print(type(booklist[i]))
-
-                booklist[i] = list
-                booklist[i].insert(-1, self.resultpro)
+                resultlist.append(self.resultpro)
 
             self.tableWidget.setRowCount(len(booklist))
             num = 0
@@ -65,11 +62,51 @@ class MyModal(QDialog):
                 self.tableWidget.setItem(num, 2, QTableWidgetItem(str(tbl[4])))
                 self.tableWidget.setItem(num, 3, QTableWidgetItem(str(tbl[5])))
                 self.tableWidget.setItem(num, 4, QTableWidgetItem(str(tbl[6])))
-                self.tableWidget.setItem(num, 5, QTableWidgetItem("-"))
+                self.tableWidget.setItem(num, 5, QTableWidgetItem(str(resultlist[num])))
                 num += 1
 
             # db close
             conn.close()
 
+            # 테이블 더블클릭 시 이벤트
+            self.tableWidget.doubleClicked.connect(self.tableWidget_doubleClicked)
+
+            # 버튼 클릭 시 이벤트
+            self.pushButton.clicked.connect(self.enterButtonClick)  # 입력
+            self.pushButton2.clicked.connect(self.cancleButtonClick)  # 취소
+
         except:
             traceback.print_exc()
+
+
+    def tableWidget_doubleClicked(self):
+        row = self.tableWidget.currentIndex().row()
+
+        subject1 = self.tableWidget.item(row, 1).text()
+        subject2 = self.tableWidget.item(row, 2).text()
+        st_page = self.tableWidget.item(row, 3).text()
+        ed_page = self.tableWidget.item(row, 4).text()
+        dis_text = subject1 + " [" + subject2 + "] " + "p." + st_page + "~" + ed_page
+        self.lineEdit_4.setText(dis_text)
+
+    def enterButtonClick(self):
+        if self.seq == 1:
+            self.object.labelText1.setText(self.lineEdit_4.text())
+        elif self.seq == 2:
+            self.object.labelText2.setText(self.lineEdit_4.text())
+        elif self.seq == 3:
+            self.object.labelText3.setText(self.lineEdit_4.text())
+        elif self.seq == 4:
+            self.object.labelText4.setText(self.lineEdit_4.text())
+        elif self.seq == 5:
+            self.object.labelText5.setText(self.lineEdit_4.text())
+        elif self.seq == 6:
+            self.object.labelText6.setText(self.lineEdit_4.text())
+        elif self.seq == 7:
+            self.object.labelText7.setText(self.lineEdit_4.text())
+        elif self.seq == 8:
+            self.object.labelText8.setText(self.lineEdit_4.text())
+        self.close()
+
+    def cancleButtonClick(self):
+        self.close()

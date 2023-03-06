@@ -9,7 +9,7 @@ import bookmodal
 import buttonobject
 import traceback
 import layout
-import datetime
+import datetime as dt
 import schedulemodal
 
 form_class = uic.loadUiType("pyqt_ui/main.ui")[0]
@@ -20,8 +20,11 @@ class Main(QMainWindow, form_class):
             super().__init__()
             self.setupUi(self)
 
+            # 윈도우 크기고정
+            self.setFixedSize(QSize(800, 600))
+
             # 현재시간 입력하기
-            to_day = datetime.datetime.now()
+            to_day = dt.datetime.now()
             yearVar = to_day.year
             monVar = to_day.month
             dayVar = to_day.day
@@ -32,8 +35,8 @@ class Main(QMainWindow, form_class):
             # 레이아웃 설정
             layout.MainLayout(self)
             days = ['월','화','수','목','금','토','일']
-            daysVar = days[datetime.date(yearVar, monVar, dayVar).weekday()]
-            self.labelDate.setText(self.dateEdit.text()+"["+daysVar+"]")
+            daysVar = days[dt.date(yearVar, monVar, dayVar).weekday()]
+            self.labelDate.setText(str(monVar)+"/"+str(dayVar)+"["+daysVar+"]")
 
             # 전역변수 선언
             self.mainId = "0" # 메인 id
@@ -68,7 +71,12 @@ class Main(QMainWindow, form_class):
             cs.execute("CREATE TABLE IF NOT EXISTS progress \
                     (id integer, bookname text, startPage integer, endPage integer, datetime text, \
                     CONSTRAINT fk_progress_group FOREIGN KEY (id) REFERENCES student(id) ON DELETE CASCADE)")
-
+            # 4. 스케줄테이블
+            cs.execute("CREATE TABLE IF NOT EXISTS schedule \
+                    (id integer, datetime text, content1 text, content2 text, content3 text, content4 text, \
+                    assign1 text, assign2 text, assign3 text, assign4 text, notice1 text, notice2 text, \
+                    CONSTRAINT fk_progress_group FOREIGN KEY (id) REFERENCES student(id) ON DELETE CASCADE)")
+            
             conn.close() # db close
 
             # 테이블 설정
@@ -85,7 +93,7 @@ class Main(QMainWindow, form_class):
             self.btnDelete.clicked.connect(lambda: self.buttonClick("delete")) # 인원삭제
             self.btnUpdate.clicked.connect(lambda: self.buttonClick("update")) # 인원수정
             self.btnSearch.clicked.connect(lambda: self.buttonClick("search")) # 인원검색
-            self.btnScSearch.clicked.connect(lambda: self.buttonClick("scsearch"))  # 스케줄관리 - 검색 버튼클릭
+            self.btnClear.clicked.connect(lambda: self.buttonClick("clear"))  # 스케줄관리 - 초기화 버튼클릭
             self.btnLeft.clicked.connect(lambda: self.buttonClick("left")) # 스케줄관리 - ◀ 버튼클릭
             self.btnRight.clicked.connect(lambda: self.buttonClick("right")) # 스케줄관리 - ▶ 버튼클릭
             self.btnProDelete.clicked.connect(lambda: self.buttonClick("prodelete"))  # 진도관리 - 삭제 버튼클릭
@@ -94,6 +102,7 @@ class Main(QMainWindow, form_class):
             # 메뉴 클릭
             self.action_book.triggered.connect(lambda: self.menuClick("book")) # 교재등록
             self.action_assign.triggered.connect(lambda: self.menuClick("assign"))  # 교재할당
+            self.action_save.triggered.connect(lambda: self.menuClick("save")) # 내보내기
 
             # 리스트위젯 아이템 클릭시 이벤트 처리
             self.listWidget.itemClicked.connect(self.listWidgetClick)
@@ -103,14 +112,17 @@ class Main(QMainWindow, form_class):
             self.comboStudentList.currentTextChanged.connect(self.comboStudentlistChange)  # 스케줄관리 - 학년 리스트 변경시
             self.comboStudentList2.currentTextChanged.connect(self.comboStudentlist2Change)  # 진도관리 - 한년 리스트 변경시
             self.comboSchool.currentTextChanged.connect(self.comboSchoolChange)  #  진도관리 - 교재명 리스트 변경시
-            self.combobook.activated.connect(lambda: self.combobookChange(self.combobook.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_2.activated.connect(lambda: self.combobookChange(self.combobook_2.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_3.activated.connect(lambda: self.combobookChange(self.combobook_3.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_4.activated.connect(lambda: self.combobookChange(self.combobook_4.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_5.activated.connect(lambda: self.combobookChange(self.combobook_5.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_6.activated.connect(lambda: self.combobookChange(self.combobook_6.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_7.activated.connect(lambda: self.combobookChange(self.combobook_7.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
-            self.combobook_8.activated.connect(lambda: self.combobookChange(self.combobook_8.currentText(), self.combobook.currentIndex()))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook.activated.connect(lambda: self.combobookChange(self.combobook.currentText(), self.combobook.currentIndex(), 1))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_2.activated.connect(lambda: self.combobookChange(self.combobook_2.currentText(), self.combobook.currentIndex(), 2))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_3.activated.connect(lambda: self.combobookChange(self.combobook_3.currentText(), self.combobook.currentIndex(), 3))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_4.activated.connect(lambda: self.combobookChange(self.combobook_4.currentText(), self.combobook.currentIndex(), 4))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_5.activated.connect(lambda: self.combobookChange(self.combobook_5.currentText(), self.combobook.currentIndex(), 5))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_6.activated.connect(lambda: self.combobookChange(self.combobook_6.currentText(), self.combobook.currentIndex(), 6))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_7.activated.connect(lambda: self.combobookChange(self.combobook_7.currentText(), self.combobook.currentIndex(), 7))  # 스케줄관리 - 교재 리스트 변경시
+            self.combobook_8.activated.connect(lambda: self.combobookChange(self.combobook_8.currentText(), self.combobook.currentIndex(), 8))  # 스케줄관리 - 교재 리스트 변경시
+
+            # DateEdit 날짜 변경 시 이벤트 처리
+            self.dateEdit.dateChanged.connect(self.dateChange)
 
             # 콤보박스, 리스트위젯 초기화
             self.insertStudentCombo()
@@ -155,15 +167,30 @@ class Main(QMainWindow, form_class):
                     self.tableWidget.setItem(num, 4, QTableWidgetItem(str(row[5])))
                     self.tableWidget.setItem(num, 5, QTableWidgetItem(str(row[13])))
                     num += 1
-
-            elif what == "scsearch":
-                pass
+            elif what == "clear":
+                self.scheduleClear()
 
             elif what == "left":
-                pass
+                # 현재시간 입력하기
+                thisdate = self.dateEdit.text().split('-')
+                now = dt.datetime(int(thisdate[0]), int(thisdate[1]), int(thisdate[2]))
+                before_one_day = now - dt.timedelta(days=1)
+                yearVar = before_one_day.year
+                monVar = before_one_day.month
+                dayVar = before_one_day.day
+                dateVar = QDate(yearVar, monVar, dayVar)
+                self.dateEdit.setDate(dateVar)
 
             elif what == "right":
-                pass
+                # 현재시간 입력하기
+                thisdate = self.dateEdit.text().split('-')
+                now = dt.datetime(int(thisdate[0]), int(thisdate[1]), int(thisdate[2]))
+                after_one_day = now + dt.timedelta(days=1)
+                yearVar = after_one_day.year
+                monVar = after_one_day.month
+                dayVar = after_one_day.day
+                dateVar = QDate(yearVar, monVar, dayVar)
+                self.dateEdit.setDate(dateVar)
 
             elif what == "prodelete":
                 buttonobject.MyApp.btnprodeleteClick()
@@ -190,12 +217,56 @@ class Main(QMainWindow, form_class):
 
 
     def menuClick(self, what):
-        if what == "book":
-            modal = bookmodal.MyModal(self) # 모달 띄우기
-        elif what == "assign":
-            modal = assignmodal.MyModal(self) # 모달 띄우기
+        try:
+            if what == "book":
+                modal = bookmodal.MyModal(self) # 모달 띄우기
+            elif what == "assign":
+                modal = assignmodal.MyModal(self) # 모달 띄우기
+            elif what == "save":
+                # db connect
+                conn = sqlite3.connect("inmanage.db", isolation_level=None)
+                cs = conn.cursor()
 
+                reply = QMessageBox.question(self, '알림창!!', '저장하시겠습니까?',
+                                             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    # 해당 교재의 모든항목을 삭제
+                    stid = self.stuId
+                    stdatetime = self.dateEdit.text()
+                    cs.execute("DELETE FROM schedule WHERE id =? and datetime =?", (stid, stdatetime, ))
 
+                    # 데이터 저장하기
+                    content1 = self.combosch1.currentText() + "|" + self.combobook.currentText() + "|" + self.labelText1.text()
+                    content2 = self.combosch2.currentText() + "|" + self.combobook_2.currentText() + "|" + self.labelText2.text()
+                    content3 = self.combosch3.currentText() + "|" + self.combobook_3.currentText() + "|" + self.labelText3.text()
+                    content4 = self.combosch4.currentText() + "|" + self.combobook_4.currentText() + "|" + self.labelText4.text()
+                    assign1 = self.combosch5.currentText() + "|" + self.combobook_5.currentText() + "|" + self.labelText5.text()
+                    assign2 = self.combosch6.currentText() + "|" + self.combobook_6.currentText() + "|" + self.labelText6.text()
+                    assign3 = self.combosch7.currentText() + "|" + self.combobook_7.currentText() + "|" + self.labelText7.text()
+                    assign4 = self.combosch8.currentText() + "|" + self.combobook_8.currentText() + "|" + self.labelText8.text()
+                    notice1 = self.lineEditNotice1.text()
+                    notice2 = self.lineEditNotice2.text()
+                    insert_list = (
+                        (stid, stdatetime, content1, content2, content3, content4, assign1, assign2, assign3, assign4, notice1, notice2)
+                    )
+                    cs.execute("INSERT INTO schedule(id, datetime, content1, content2, content3, content4, assign1, assign2, assign3, assign4, notice1, notice2) \
+                                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", insert_list)
+                    # db close
+                    conn.close()
+
+                else:
+                    # db close
+                    conn.close()
+                    return
+
+                # 이미지로 저장하기
+                # 해당일자폴더만들기 => 학교_학년_이름_일자.png 만들기
+
+        except:
+            traceback.print_exc()
+
+            # db close
+            conn.close()
 
     def tableCellClicked(self, row, col):
         self.mainId = self.tableWidget.item(row, 0).text()
@@ -203,13 +274,119 @@ class Main(QMainWindow, form_class):
 
     # ------------------------------------------------------------------------
     # 스케줄관리 탭
-    def combobookChange(self, bookname, index):
+    def dateChange(self):
+        self.searchScheData()
+
+    def scheduleClear(self):
+        self.labelDate.setText(str(self.dateEdit.text()))
+        self.combosch1.setCurrentText("")
+        self.combobook.setCurrentText("")
+        self.labelText1.setText("")
+        self.combosch2.setCurrentText("")
+        self.combobook_2.setCurrentText("")
+        self.labelText2.setText("")
+        self.combosch3.setCurrentText("")
+        self.combobook_3.setCurrentText("")
+        self.labelText3.setText("")
+        self.combosch4.setCurrentText("")
+        self.combobook_4.setCurrentText("")
+        self.labelText4.setText("")
+        self.combosch5.setCurrentText("")
+        self.combobook_5.setCurrentText("")
+        self.labelText5.setText("")
+        self.combosch6.setCurrentText("")
+        self.combobook_6.setCurrentText("")
+        self.labelText6.setText("")
+        self.combosch7.setCurrentText("")
+        self.combobook_7.setCurrentText("")
+        self.labelText7.setText("")
+        self.combosch8.setCurrentText("")
+        self.combobook_8.setCurrentText("")
+        self.labelText8.setText("")
+        self.lineEditNotice1.setText("")
+        self.lineEditNotice2.setText("")
+
+    def searchScheData(self):
+        try :
+            # db connect
+            conn = sqlite3.connect("inmanage.db", isolation_level=None)
+            cs = conn.cursor()
+
+            # 교재 테이블에서 값 가져오기
+            cs.execute("SELECT * FROM schedule WHERE id =? and datetime =?", (self.stuId, self.dateEdit.text(), ))
+            schedulelist = cs.fetchone()  # 해당 교재의 전체 단원 가져오기
+            if schedulelist == None :
+                reply = QMessageBox.about(self, "알림창!!", "해당 일자의 스케줄데이터가 존재하지않습니다.")
+                self.scheduleClear()
+                return
+            else :
+                # 값 채워넣기
+                self.labelDate.setText(str(schedulelist[1]))
+                content1 = schedulelist[2].split('|')
+                self.combosch1.setCurrentText(str(content1[0]))
+                self.combobook.setCurrentText(str(content1[1]))
+                self.labelText1.setText(str(content1[2]))
+                content2 = schedulelist[3].split('|')
+                self.combosch2.setCurrentText(str(content2[0]))
+                self.combobook_2.setCurrentText(str(content2[1]))
+                self.labelText2.setText(str(content2[2]))
+                content3 = schedulelist[4].split('|')
+                self.combosch3.setCurrentText(str(content3[0]))
+                self.combobook_3.setCurrentText(str(content3[1]))
+                self.labelText3.setText(str(content3[2]))
+                content4 = schedulelist[5].split('|')
+                self.combosch4.setCurrentText(str(content4[0]))
+                self.combobook_4.setCurrentText(str(content4[1]))
+                self.labelText4.setText(str(content4[2]))
+                assign1 = schedulelist[6].split('|')
+                self.combosch5.setCurrentText(str(assign1[0]))
+                self.combobook_5.setCurrentText(str(assign1[1]))
+                self.labelText5.setText(str(assign1[2]))
+                assign2 = schedulelist[7].split('|')
+                self.combosch6.setCurrentText(str(assign2[0]))
+                self.combobook_6.setCurrentText(str(assign2[1]))
+                self.labelText6.setText(str(assign2[2]))
+                assign3 = schedulelist[8].split('|')
+                self.combosch7.setCurrentText(str(assign3[0]))
+                self.combobook_7.setCurrentText(str(assign3[1]))
+                self.labelText7.setText(str(assign3[2]))
+                assign4 = schedulelist[9].split('|')
+                self.combosch8.setCurrentText(str(assign4[0]))
+                self.combobook_8.setCurrentText(str(assign4[1]))
+                self.labelText8.setText(str(assign4[2]))
+                self.lineEditNotice1.setText(str(schedulelist[10]))
+                self.lineEditNotice2.setText(str(schedulelist[11]))
+
+                # db close
+                conn.close()
+        except:
+            traceback.print_exc()
+
+            # db close
+            conn.close()
+
+    def combobookChange(self, bookname, index, seq):
         try:
             if index-1 == -1:
-                return
+                if seq == 1:
+                    self.labelText1.setText("")
+                elif seq == 2:
+                    self.labelText2.setText("")
+                elif seq == 3:
+                    self.labelText3.setText("")
+                elif seq == 4:
+                    self.labelText4.setText("")
+                elif seq == 5:
+                    self.labelText5.setText("")
+                elif seq == 6:
+                    self.labelText6.setText("")
+                elif seq == 7:
+                    self.labelText7.setText("")
+                elif seq == 8:
+                    self.labelText8.setText("")
             else:
                 # self.comboList[index-1] : bookid
-                modal = schedulemodal.MyModal(self, self.stuId, bookname, self.comboList[index-1], self.dateEdit.text(), self.globalSchool, self.globalGrade)
+                modal = schedulemodal.MyModal(self, self.stuId, bookname, self.comboList[index-1], self.dateEdit.text(), self.globalSchool, self.globalGrade, seq)
         except:
             traceback.print_exc()
 
@@ -274,6 +451,9 @@ class Main(QMainWindow, form_class):
 
             # 양식에 이름 넣기
             self.labelName.setText(stuname)
+
+            # 조회하기
+            self.searchScheData()
 
         except:
             traceback.print_exc()
