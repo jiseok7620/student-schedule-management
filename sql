@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS progress
 
 4. 교재 테이블(textbook)
 CREATE TABLE IF NOT EXISTS textbook
-:교재id(bookid), 교재명(bookname), 대단원명(subjectName), 부단원(subjectName2), 시작페이지(startPage), 끝페이지(endPage), 총페이지수(allPage),
+:교재id(bookid)(PRIMARY KEY), 교재명(bookname), 대단원명(subjectName), 부단원(subjectName2), 시작페이지(startPage), 끝페이지(endPage), 총페이지수(allPage),
 학교(school), 학년(grade)
 
 5. 스케줄관리 테이블

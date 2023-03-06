@@ -41,7 +41,7 @@
          <enum>QTabWidget::Triangular</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -256,7 +256,7 @@
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,4,1">
+           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,5">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_10">
               <item>
@@ -326,7 +326,7 @@
                    </widget>
                   </item>
                   <item row="3" column="3">
-                   <widget class="QDateEdit" name="dateEdit_2">
+                   <widget class="QDateEdit" name="dateEdit2">
                     <property name="dateTime">
                      <datetime>
                       <hour>0</hour>
@@ -336,6 +336,12 @@
                       <month>3</month>
                       <day>3</day>
                      </datetime>
+                    </property>
+                    <property name="currentSection">
+                     <enum>QDateTimeEdit::DaySection</enum>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -363,191 +369,49 @@
                  </layout>
                 </item>
                 <item>
-                 <widget class="QTableWidget" name="tableWidget2"/>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_8">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_19">
-                <item>
-                 <widget class="QLabel" name="label_61">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
+                 <widget class="QTableWidget" name="tableWidget2">
+                  <column>
+                   <property name="text">
+                    <string>교재명</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>시작페이지</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>끝페이지</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>일시</string>
+                   </property>
+                  </column>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QProgressBar" name="progressBar_10">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_18">
-                <item>
-                 <widget class="QLabel" name="label_60">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_9">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_17">
-                <item>
-                 <widget class="QLabel" name="label_59">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_8">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_16">
-                <item>
-                 <widget class="QLabel" name="label_58">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_7">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_15">
-                <item>
-                 <widget class="QLabel" name="label_57">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_6">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
-                <item>
-                 <widget class="QLabel" name="label_56">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_5">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
-                <item>
-                 <widget class="QLabel" name="label_55">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_4">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_12">
-                <item>
-                 <widget class="QLabel" name="label_54">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_3">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
-                <item>
-                 <widget class="QLabel" name="label_53">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar_2">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <widget class="QLabel" name="label_52">
-                  <property name="text">
-                   <string>None</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QProgressBar" name="progressBar">
-                  <property name="value">
-                   <number>0</number>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,8">
+                  <item>
+                   <widget class="QLabel" name="label_52">
+                    <property name="text">
+                     <string>진도율   :   </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QProgressBar" name="progressBar">
+                    <property name="value">
+                     <number>0</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -630,6 +494,9 @@
                   <property name="currentSection">
                    <enum>QDateTimeEdit::DaySection</enum>
                   </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -657,10 +524,16 @@
               </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_6" stretch="5,1,10,1,10,1,5">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,3,4,2">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
                   <item>
-                   <widget class="QLabel" name="label_5">
+                   <widget class="QLabel" name="labelImage">
                     <property name="text">
                      <string>[아이엔이미지]</string>
                     </property>
@@ -670,39 +543,39 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_6">
+                   <widget class="QLabel" name="labelDate">
                     <property name="text">
                      <string>[일자]</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_7">
+                   <widget class="QLabel" name="labelDaily">
                     <property name="text">
-                     <string>Daily Report</string>
+                     <string>Daily Report   </string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_8">
+                   <widget class="QLabel" name="labelName">
                     <property name="text">
                      <string>[이름]</string>
                     </property>
                     <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                     </property>
                    </widget>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_9">
+                 <widget class="QLabel" name="labelTitle1">
                   <property name="text">
                    <string>&lt; 오늘의 학습내용 &gt;</string>
                   </property>
@@ -712,123 +585,300 @@
                  </widget>
                 </item>
                 <item>
-                 <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="1,2,3,10">
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_14">
-                    <property name="text">
-                     <string>[이미지]</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLabel" name="label_20">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="1,2,4,12">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
                   <item row="3" column="0">
-                   <widget class="QLabel" name="label_22">
+                   <widget class="QLabel" name="labelf4">
                     <property name="text">
-                     <string>[이미지]</string>
+                     <string>▣</string>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="3">
-                   <widget class="QLabel" name="label_21">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QLabel" name="label_16">
-                    <property name="text">
-                     <string>TextLabel</string>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="3">
-                   <widget class="QLabel" name="label_10">
+                   <widget class="QLabel" name="labelText1">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLabel" name="label_18">
+                   <widget class="QLabel" name="labelf3">
                     <property name="text">
-                     <string>[이미지]</string>
+                     <string>▣</string>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QLabel" name="label_24">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLabel" name="label_17">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_11">
-                    <property name="text">
-                     <string>[이미지]</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLabel" name="label_23">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="label_13">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_12">
-                    <property name="text">
-                     <string>TextLabel</string>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="3">
-                   <widget class="QLabel" name="label_25">
+                   <widget class="QLabel" name="labelText4">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string/>
                     </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLabel" name="labelText3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelf1">
+                    <property name="text">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;▣&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelf2">
+                    <property name="text">
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="combosch1">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLabel" name="label_15">
-                    <property name="text">
-                     <string>TextLabel</string>
+                   <widget class="QComboBox" name="combosch2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLabel" name="label_19">
+                   <widget class="QComboBox" name="combosch3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QComboBox" name="combosch4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QComboBox" name="combobook">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="mouseTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QComboBox" name="combobook_2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QComboBox" name="combobook_3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QComboBox" name="combobook_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLabel" name="labelText2">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_26">
+                 <widget class="QLabel" name="labelTitle2">
                   <property name="text">
                    <string>&lt;오늘의 과제&gt;</string>
                   </property>
@@ -838,123 +888,294 @@
                  </widget>
                 </item>
                 <item>
-                 <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,2,3,10">
-                  <item row="3" column="3">
-                   <widget class="QLabel" name="label_40">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_29">
-                    <property name="text">
-                     <string>[이미지]</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QLabel" name="label_31">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="3">
-                   <widget class="QLabel" name="label_30">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLabel" name="label_28">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,2,4,12">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
                   <item row="1" column="3">
-                   <widget class="QLabel" name="label_35">
+                   <widget class="QLabel" name="labelText6">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLabel" name="label_41">
-                    <property name="text">
-                     <string>TextLabel</string>
+                   <widget class="QComboBox" name="combosch6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_36">
-                    <property name="text">
-                     <string>[이미지]</string>
-                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLabel" name="label_38">
+                   <widget class="QComboBox" name="combosch5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelf5">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="3">
+                   <widget class="QLabel" name="labelText8">
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLabel" name="label_33">
+                   <widget class="QLabel" name="labelf7">
                     <property name="text">
-                     <string>[이미지]</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="3">
-                   <widget class="QLabel" name="label_32">
+                   <widget class="QLabel" name="labelText5">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="label_27">
+                   <widget class="QLabel" name="labelf6">
                     <property name="text">
-                     <string>[이미지]</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="2">
-                   <widget class="QLabel" name="label_34">
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="labelf8">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLabel" name="labelText7">
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLabel" name="label_42">
-                    <property name="text">
-                     <string>TextLabel</string>
+                   <widget class="QComboBox" name="combosch7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QLabel" name="label_37">
-                    <property name="text">
-                     <string>TextLabel</string>
+                   <widget class="QComboBox" name="combosch8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QLabel" name="label_39">
-                    <property name="text">
-                     <string>TextLabel</string>
+                   <widget class="QComboBox" name="combobook_5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QComboBox" name="combobook_6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QComboBox" name="combobook_7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QComboBox" name="combobook_8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_43">
+                 <widget class="QLabel" name="labelTitle3">
                   <property name="text">
                    <string>&lt;이번달 아이엔 공지안내&gt;</string>
                   </property>
@@ -964,32 +1185,56 @@
                  </widget>
                 </item>
                 <item>
-                 <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,50">
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="label_44">
-                    <property name="text">
-                     <string>TextLabel</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_45">
-                    <property name="text">
-                     <string>[이미지]</string>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,15">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="label_46">
+                   <widget class="QLabel" name="labelf10">
                     <property name="text">
-                     <string>[이미지]</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLabel" name="label_47">
+                   <widget class="QLineEdit" name="lineEditNotice2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="placeholderText">
+                     <string>[공지사항을 입력해주세요.]</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelf9">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>▣</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEditNotice1">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>[공지사항을 입력해주세요.]</string>
                     </property>
                    </widget>
                   </item>
@@ -998,32 +1243,6 @@
                </layout>
               </item>
              </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_3">
-         <attribute name="title">
-          <string>수준그래프</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QGraphicsView" name="graphicsView"/>
             </item>
            </layout>
           </item>
@@ -1068,7 +1287,10 @@
   </action>
   <action name="actionExcel">
    <property name="text">
-    <string>Excel 내보내기</string>
+    <string>내보내기</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_assign">

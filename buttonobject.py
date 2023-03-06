@@ -40,5 +40,24 @@ class MyApp(QWidget):
     def btnprodeleteClick(self):
         pass
 
-    def btnproaddClick(self):
-        pass
+    def btnproaddClick(self, stid, bookname, startpage, endpage, datetime):
+        conn = sqlite3.connect("inmanage.db", isolation_level=None)
+        cs = conn.cursor()
+        
+        # 추가하기
+        insert_list = (
+            (stid, bookname, startpage, endpage, datetime)
+        )
+        cs.execute("INSERT INTO progress(id, bookname, startPage, endPage, datetime) \
+                                                        VALUES(?,?,?,?,?)", insert_list)
+        
+        # 조회하기
+        cs.execute("SELECT * FROM progress WHERE id =? and bookname =?",
+                   (stid, bookname,))
+        returnList = cs.fetchall()
+
+        # db close
+        conn.close()
+
+        # 리스트 리턴하기
+        return returnList

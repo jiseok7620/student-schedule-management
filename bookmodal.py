@@ -120,7 +120,8 @@ class MyModal(QDialog):
                 cs = conn.cursor()
 
                 # 해당 교재의 모든항목을 삭제
-                cs.execute("DELETE FROM textbook WHERE bookname =? and school =? and grade =?", (self.bookTitle.text(), self.comboSchool.currentText(), self.comboGrade.currentText()))
+                bookid = self.bookTitle.text() + self.comboSchool.currentText() + self.comboGrade.currentText()
+                cs.execute("DELETE FROM textbook WHERE bookid =?", (bookid, ))
 
                 # 다시 테이블에 입력된 모든값을 저장
                 for i in range(0, self.tableWidget.rowCount()) :
@@ -217,10 +218,10 @@ class MyModal(QDialog):
             gr = bootext.split('-')[1]
             cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =?", (booknm, sc, gr,))
             textbooklist = cs.fetchall()
-            self.bookTitle.setText(str(textbooklist[0][1]))
-            self.allPage.setText(str(textbooklist[0][6]))
-            self.comboSchool.setCurrentText(str(textbooklist[0][7]))
-            self.comboGrade.setCurrentText(str(textbooklist[0][8]))
+            self.bookTitle.setText(str(textbooklist[0][2]))
+            self.allPage.setText(str(textbooklist[0][7]))
+            self.comboSchool.setCurrentText(str(textbooklist[0][8]))
+            self.comboGrade.setCurrentText(str(textbooklist[0][9]))
             self.tableWidget.setRowCount(len(textbooklist))
             num = 0
             for tbl in textbooklist:
