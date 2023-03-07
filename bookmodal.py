@@ -129,8 +129,14 @@ class MyModal(QDialog):
                     bookname = self.bookTitle.text()
                     subjectname = self.tableWidget.item(i,1).text()
                     subjectname2 = self.tableWidget.item(i,2).text()
-                    startpage = self.tableWidget.item(i,3).text()
-                    endpage = self.tableWidget.item(i,4).text()
+                    if self.tableWidget.item(i, 3).text() == None:
+                        startpage = ""
+                    else:
+                        startpage = self.tableWidget.item(i,3).text()
+                    if self.tableWidget.item(i,4).text() == None:
+                        startpage = ""
+                    else:
+                        endpage = self.tableWidget.item(i,4).text()
                     allpage = self.allPage.text()
                     school = self.comboSchool.currentText()
                     grade = self.comboGrade.currentText()
@@ -187,6 +193,8 @@ class MyModal(QDialog):
 
             self.listWidget.clear()
             bootext = self.comboBooklist.currentText()
+            if bootext == "":
+                return
             sc = bootext.split('-')[0]
             gr = bootext.split('-')[1]
             cs.execute("SELECT DISTINCT bookname FROM textbook WHERE school =? and grade =?", (sc, gr,))
@@ -216,7 +224,7 @@ class MyModal(QDialog):
             bootext = self.comboBooklist.currentText()
             sc = bootext.split('-')[0]
             gr = bootext.split('-')[1]
-            cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =?", (booknm, sc, gr,))
+            cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =? ORDER BY startPage", (booknm, sc, gr,))
             textbooklist = cs.fetchall()
             self.bookTitle.setText(str(textbooklist[0][2]))
             self.allPage.setText(str(textbooklist[0][7]))

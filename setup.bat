@@ -1,7 +1,7 @@
 @echo off
 chcp 65001
 
-python
+rem python
 IF %ERRORLEVEL%=="0" (
     echo 파이썬이 정상적으로 설치되어있습니다.
 ) ELSE (
