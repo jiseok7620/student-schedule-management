@@ -279,6 +279,8 @@ class MyModal(QDialog):
 
             self.listWidget.clear()
             bootext = self.comboBooklist.currentText()
+            if bootext == "":
+                return
             self.globalSchool = bootext.split('-')[0]
             self.globalGrade = bootext.split('-')[1]
             cs.execute("SELECT DISTINCT bookname FROM textbook WHERE school =? and grade =?", (self.globalSchool, self.globalGrade,))

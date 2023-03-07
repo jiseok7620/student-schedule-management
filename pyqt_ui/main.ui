@@ -50,7 +50,7 @@
          <enum>QTabWidget::Triangular</enum>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -238,193 +238,30 @@
               </column>
               <column>
                <property name="text">
+                <string>학교명</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>전화번호</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>부모님번호</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>등록일</string>
                </property>
               </column>
+              <column>
+               <property name="text">
+                <string>비고</string>
+               </property>
+              </column>
              </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_4">
-         <attribute name="title">
-          <string>진도관리</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_9">
-          <property name="leftMargin">
-           <number>5</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,5">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <item>
-               <widget class="QComboBox" name="comboStudentList2"/>
-              </item>
-              <item>
-               <widget class="QListWidget" name="listWidget2">
-                <item>
-                 <property name="text">
-                  <string>-인원목록-</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="5">
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_12">
-                <item>
-                 <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2,1,2">
-                  <item row="4" column="1">
-                   <widget class="QLineEdit" name="bookTitle"/>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_48">
-                    <property name="text">
-                     <string>교재명</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="comboSchool"/>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_49">
-                    <property name="text">
-                     <string>시작페이지</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="2">
-                   <widget class="QLabel" name="label_50">
-                    <property name="text">
-                     <string>끝페이지</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QLabel" name="label_51">
-                    <property name="text">
-                     <string>일시</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="3">
-                   <widget class="QDateEdit" name="dateEdit2">
-                    <property name="dateTime">
-                     <datetime>
-                      <hour>0</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                      <year>2023</year>
-                      <month>3</month>
-                      <day>3</day>
-                     </datetime>
-                    </property>
-                    <property name="currentSection">
-                     <enum>QDateTimeEdit::DaySection</enum>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="3">
-                   <widget class="QLineEdit" name="lineEdit"/>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_8">
-                  <item>
-                   <widget class="QPushButton" name="btnProDelete">
-                    <property name="text">
-                     <string>삭제</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnProAdd">
-                    <property name="text">
-                     <string>추가</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QTableWidget" name="tableWidget2">
-                  <column>
-                   <property name="text">
-                    <string>교재명</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>시작페이지</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>끝페이지</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>일시</string>
-                   </property>
-                  </column>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,8">
-                  <item>
-                   <widget class="QLabel" name="label_52">
-                    <property name="text">
-                     <string>진도율   :   </string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QProgressBar" name="progressBar">
-                    <property name="value">
-                     <number>0</number>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-             </layout>
             </item>
            </layout>
           </item>
@@ -450,9 +287,16 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,5">
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
+             <layout class="QVBoxLayout" name="verticalLayout_9" stretch="1,18">
               <item>
-               <widget class="QComboBox" name="comboStudentList"/>
+               <widget class="QComboBox" name="comboStudentList">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QListWidget" name="listWidget">
@@ -537,7 +381,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,3,4,2">
+                 <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="2,2,4,2">
                   <property name="spacing">
                    <number>0</number>
                   </property>
@@ -618,47 +462,21 @@
                   <property name="spacing">
                    <number>0</number>
                   </property>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="labelf4">
-                    <property name="text">
-                     <string>□</string>
+                  <item row="3" column="2">
+                   <widget class="QComboBox" name="combobook_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QLabel" name="labelText1">
                     <property name="font">
                      <font>
                       <family>함초롬바탕</family>
                      </font>
                     </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="labelf3">
-                    <property name="text">
-                     <string>□</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="3">
-                   <widget class="QLabel" name="labelText4">
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string/>
+                    <property name="frame">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -674,23 +492,231 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="labelf1">
-                    <property name="text">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;□&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <item row="2" column="1">
+                   <widget class="QComboBox" name="combosch3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QComboBox" name="combobook_3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="labelf2">
-                    <property name="text">
-                     <string>□</string>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="combosch2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLabel" name="labelText2">
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QComboBox" name="combosch4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QLabel" name="labelText1">
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="3">
+                   <widget class="QLabel" name="labelText4">
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QComboBox" name="combobook">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="mouseTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QComboBox" name="combobook_2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -742,225 +768,91 @@
                     </item>
                    </widget>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QComboBox" name="combosch2">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="checkBox">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[선행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[현행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[심화]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[보충]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[특강]</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QComboBox" name="combosch3">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[선행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[현행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[심화]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[보충]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[특강]</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="combosch4">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[선행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[현행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[심화]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[보충]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[특강]</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QComboBox" name="combobook">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="mouseTracking">
+                    <property name="tabletTracking">
                      <bool>false</bool>
                     </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QComboBox" name="combobook_2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QComboBox" name="combobook_3">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QComboBox" name="combobook_4">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLabel" name="labelText2">
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QCheckBox" name="checkBox_2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="checkBox_3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="checkBox_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
@@ -986,6 +878,111 @@
                   <property name="spacing">
                    <number>0</number>
                   </property>
+                  <item row="0" column="3">
+                   <widget class="QLabel" name="labelText5">
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QComboBox" name="combobook_8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QComboBox" name="combobook_6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QComboBox" name="combosch8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLabel" name="labelText7">
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="1" column="3">
                    <widget class="QLabel" name="labelText6">
                     <property name="font">
@@ -995,6 +992,87 @@
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QComboBox" name="combosch7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[선행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[현행]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[심화]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[보충]</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>[특강]</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QComboBox" name="combobook_7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QComboBox" name="combobook_5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>함초롬바탕</family>
+                     </font>
+                    </property>
+                    <property name="frame">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1088,16 +1166,6 @@
                     </item>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="labelf5">
-                    <property name="text">
-                     <string>□</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="3" column="3">
                    <widget class="QLabel" name="labelText8">
                     <property name="font">
@@ -1110,219 +1178,91 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="labelf7">
-                    <property name="text">
-                     <string>□</string>
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="checkBox_5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QLabel" name="labelText5">
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="labelf6">
-                    <property name="text">
-                     <string>□</string>
+                   <widget class="QCheckBox" name="checkBox_6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="labelf8">
-                    <property name="text">
-                     <string>□</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="3">
-                   <widget class="QLabel" name="labelText7">
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
                     </property>
                     <property name="text">
                      <string/>
                     </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
                    </widget>
                   </item>
-                  <item row="2" column="1">
-                   <widget class="QComboBox" name="combosch7">
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="checkBox_7">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
                     </property>
-                    <item>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[선행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[현행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[심화]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[보충]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[특강]</string>
-                     </property>
-                    </item>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
                    </widget>
                   </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="combosch8">
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="checkBox_8">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
                     </property>
-                    <item>
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[선행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[현행]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[심화]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[보충]</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>[특강]</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QComboBox" name="combobook_5">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
                     </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
+                    <property name="text">
+                     <string/>
                     </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QComboBox" name="combobook_6">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QComboBox" name="combobook_7">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QComboBox" name="combobook_8">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>함초롬바탕</family>
-                     </font>
-                    </property>
-                    <property name="frame">
-                     <bool>true</bool>
+                    <property name="tristate">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
@@ -1351,16 +1291,6 @@
                   <property name="verticalSpacing">
                    <number>1</number>
                   </property>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="labelf10">
-                    <property name="text">
-                     <string>□</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="1" column="1">
                    <widget class="QLineEdit" name="lineEditNotice2">
                     <property name="sizePolicy">
@@ -1376,16 +1306,6 @@
                     </property>
                     <property name="placeholderText">
                      <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="labelf9">
-                    <property name="text">
-                     <string>□</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -1407,6 +1327,221 @@
                     </property>
                     <property name="placeholderText">
                      <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="checkBox_9">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QCheckBox" name="checkBox_10">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="tabletTracking">
+                     <bool>false</bool>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::WheelFocus</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>진도관리</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,5">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_10" stretch="1,18">
+              <item>
+               <widget class="QComboBox" name="comboStudentList2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListWidget" name="listWidget2">
+                <item>
+                 <property name="text">
+                  <string>-인원목록-</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="5">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_12" stretch="1,1,20,1">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,2,1,2">
+                  <item>
+                   <widget class="QLabel" name="label_48">
+                    <property name="text">
+                     <string>교재명</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboSchool">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_51">
+                    <property name="text">
+                     <string>일시</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEdit2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="dateTime">
+                     <datetime>
+                      <hour>0</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                      <year>2023</year>
+                      <month>3</month>
+                      <day>3</day>
+                     </datetime>
+                    </property>
+                    <property name="currentSection">
+                     <enum>QDateTimeEdit::DaySection</enum>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="Line" name="line_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableWidget" name="tableWidget2">
+                  <column>
+                   <property name="text">
+                    <string>교재명</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>시작페이지</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>끝페이지</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>일시</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>비고</string>
+                   </property>
+                  </column>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,8">
+                  <item>
+                   <widget class="QLabel" name="label_52">
+                    <property name="text">
+                     <string>진도율   :   </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QProgressBar" name="progressBar">
+                    <property name="value">
+                     <number>0</number>
                     </property>
                    </widget>
                   </item>
