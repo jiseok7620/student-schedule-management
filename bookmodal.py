@@ -31,11 +31,20 @@ class MyModal(QDialog):
             self.tableWidget.setEditTriggers(QAbstractItemView.AllEditTriggers)
             self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
+            # 테이블2 설정
+            self.tableWidget2.setColumnCount(3)
+            column_headers2 = ['NO', '대단원명', '부단원명']
+            self.tableWidget2.setHorizontalHeaderLabels(column_headers2)
+            self.tableWidget2.setEditTriggers(QAbstractItemView.AllEditTriggers)
+            self.tableWidget2.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+
             # 버튼 클릭 이벤트 처리
             self.btndelete.clicked.connect(lambda: self.btnDelete())  # 교재삭제
             self.btnsave.clicked.connect(lambda: self.btnSave())  # 교재저장
             self.btndelrow.clicked.connect(lambda: self.btnDelRow())  # 행삭제
             self.btnaddrow.clicked.connect(lambda: self.btnAddRow())  # 행추가
+            self.btndelrow2.clicked.connect(lambda: self.btnDelRow2())  # 행삭제2
+            self.btnaddrow2.clicked.connect(lambda: self.btnAddRow2())  # 행추가2
 
             # 콤보박스 변경 시 이벤트 처리
             self.comboBooklist.currentTextChanged.connect(self.comboBooklistChange)
@@ -93,7 +102,10 @@ class MyModal(QDialog):
                 # 테이블 초기화
                 self.tableWidget.setRowCount(0)
                 self.tableWidget.setColumnCount(5)
-                column_headers = ['NO', '대단원명', '부단원명', '시작페이지', '끝페이지']
+
+                # 테이블2 초기화
+                self.tableWidget2.setRowCount(0)
+                self.tableWidget2.setColumnCount(3)
 
                 # lineedit 초기화
                 self.comboSchool.setCurrentText("초등학교")
@@ -129,14 +141,8 @@ class MyModal(QDialog):
                     bookname = self.bookTitle.text()
                     subjectname = self.tableWidget.item(i,1).text()
                     subjectname2 = self.tableWidget.item(i,2).text()
-                    if self.tableWidget.item(i, 3).text() == None:
-                        startpage = ""
-                    else:
-                        startpage = self.tableWidget.item(i,3).text()
-                    if self.tableWidget.item(i,4).text() == None:
-                        startpage = ""
-                    else:
-                        endpage = self.tableWidget.item(i,4).text()
+                    startpage = self.tableWidget.item(i,3).text()
+                    endpage = self.tableWidget.item(i,4).text()
                     allpage = self.allPage.text()
                     school = self.comboSchool.currentText()
                     grade = self.comboGrade.currentText()
@@ -146,6 +152,25 @@ class MyModal(QDialog):
                     )
                     cs.execute("INSERT INTO textbook(bookid, no, bookname, subjectName, subjectName2, startPage, endPage, allPage, school, grade) \
                                                     VALUES(?,?,?,?,?,?,?,?,?,?)", insert_list)
+
+                # 다시 테이블2에 입력된 모든값을 저장
+                for i in range(0, self.tableWidget2.rowCount()):
+                    no = self.tableWidget2.item(i, 0).text()
+                    bookname = self.bookTitle.text()
+                    subjectname = self.tableWidget2.item(i, 1).text()
+                    subjectname2 = self.tableWidget2.item(i, 2).text()
+                    startpage = "-"
+                    endpage = "-"
+                    allpage = self.allPage.text()
+                    school = self.comboSchool.currentText()
+                    grade = self.comboGrade.currentText()
+                    bookid = bookname + school + grade
+                    insert_list = (
+                        (
+                        bookid, no, bookname, subjectname, subjectname2, startpage, endpage, allpage, school, grade)
+                    )
+                    cs.execute("INSERT INTO textbook(bookid, no, bookname, subjectName, subjectName2, startPage, endPage, allPage, school, grade) \
+                                                                VALUES(?,?,?,?,?,?,?,?,?,?)", insert_list)
 
                 # db close
                 conn.close()
@@ -159,7 +184,10 @@ class MyModal(QDialog):
                 # 테이블 초기화
                 self.tableWidget.setRowCount(0)
                 self.tableWidget.setColumnCount(5)
-                column_headers = ['NO', '대단원명', '부단원명', '시작페이지', '끝페이지']
+
+                # 테이블2 초기화
+                self.tableWidget2.setRowCount(0)
+                self.tableWidget2.setColumnCount(3)
 
                 # lineedit 초기화
                 self.comboSchool.setCurrentText("초등학교")
@@ -171,11 +199,9 @@ class MyModal(QDialog):
             traceback.print_exc()
 
 
-
     def btnDelRow(self):
         rowCount = self.tableWidget.rowCount() - 1
         self.tableWidget.removeRow(rowCount)
-
 
 
     def btnAddRow(self):
@@ -183,6 +209,16 @@ class MyModal(QDialog):
         self.tableWidget.insertRow(rowCount)
         self.tableWidget.setItem(rowCount, 0, QTableWidgetItem(str(rowCount+1)))
 
+
+    def btnDelRow2(self):
+        rowCount = self.tableWidget2.rowCount() - 1
+        self.tableWidget2.removeRow(rowCount)
+
+
+    def btnAddRow2(self):
+        rowCount = self.tableWidget2.rowCount()
+        self.tableWidget2.insertRow(rowCount)
+        self.tableWidget2.setItem(rowCount, 0, QTableWidgetItem(str(rowCount+1)))
 
 
     def comboBooklistChange(self):
@@ -224,7 +260,9 @@ class MyModal(QDialog):
             bootext = self.comboBooklist.currentText()
             sc = bootext.split('-')[0]
             gr = bootext.split('-')[1]
-            cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =? ORDER BY startPage", (booknm, sc, gr,))
+            
+            # 테이블1에 넣기 
+            cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =? and startPage <>'-' ORDER BY startPage", (booknm, sc, gr,))
             textbooklist = cs.fetchall()
             self.bookTitle.setText(str(textbooklist[0][2]))
             self.allPage.setText(str(textbooklist[0][7]))
@@ -239,6 +277,17 @@ class MyModal(QDialog):
                 self.tableWidget.setItem(num, 3, QTableWidgetItem(str(tbl[5])))
                 self.tableWidget.setItem(num, 4, QTableWidgetItem(str(tbl[6])))
                 num += 1
+
+            # 테이블2에 넣기
+            cs.execute("SELECT * FROM textbook WHERE bookname =? and school =? and grade =? and startPage =? ORDER BY no", (booknm, sc, gr, "-",))
+            textbooklist2 = cs.fetchall()
+            self.tableWidget2.setRowCount(len(textbooklist2))
+            num2 = 0
+            for tbl2 in textbooklist2:
+                self.tableWidget2.setItem(num2, 0, QTableWidgetItem(str(tbl2[1])))
+                self.tableWidget2.setItem(num2, 1, QTableWidgetItem(str(tbl2[3])))
+                self.tableWidget2.setItem(num2, 2, QTableWidgetItem(str(tbl2[4])))
+                num2 += 1
 
             # db close
             conn.close()

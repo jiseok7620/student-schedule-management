@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS textbookperman
 
 3. 진도 테이블
 CREATE TABLE IF NOT EXISTS progress
-:id(foreign key), 교재명(bookname), 시작페이지(startPage), 끝페이지(endPage), 일시(datetime), 비고(remark) : 진행중, 완료
+:id(foreign key), 교재명(bookname), 시작페이지(startPage), 끝페이지(endPage), 일시(datetime), 비고(remark)[: 진행중, 완료], 위치(position)[:1~8]
 
 4. 교재 테이블(textbook)
 CREATE TABLE IF NOT EXISTS textbook
