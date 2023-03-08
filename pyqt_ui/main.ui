@@ -50,7 +50,7 @@
          <enum>QTabWidget::Triangular</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -185,7 +185,7 @@
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+             <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,0">
               <item>
                <widget class="QPushButton" name="btnEnroll">
                 <property name="text">
@@ -204,6 +204,13 @@
                <widget class="QPushButton" name="btnUpdate">
                 <property name="text">
                  <string>인원수정</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnMoney">
+                <property name="text">
+                 <string>등록비제출</string>
                 </property>
                </widget>
               </item>
@@ -258,7 +265,12 @@
               </column>
               <column>
                <property name="text">
-                <string>비고</string>
+                <string>등록제출일</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>등록알림</string>
                </property>
               </column>
              </widget>
@@ -311,6 +323,9 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,50">
+              <property name="spacing">
+               <number>2</number>
+              </property>
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -321,7 +336,7 @@
                <number>0</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,2,2,2,2">
+               <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,3,0,0,0,2,2,2">
                 <item>
                  <widget class="QLabel" name="label_4">
                   <property name="text">
@@ -334,6 +349,9 @@
                 </item>
                 <item>
                  <widget class="QDateEdit" name="dateEdit">
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
                   <property name="dateTime">
                    <datetime>
                     <hour>0</hour>
@@ -353,13 +371,6 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btnClear">
-                  <property name="text">
-                   <string>초기화</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="btnLeft">
                   <property name="text">
                    <string>◀</string>
@@ -370,6 +381,34 @@
                  <widget class="QPushButton" name="btnRight">
                   <property name="text">
                    <string>▶</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_4">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btnYesterday">
+                  <property name="text">
+                   <string>불러오기</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btnClear">
+                  <property name="text">
+                   <string>초기화</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btnSaveSchedule">
+                  <property name="text">
+                   <string>저장</string>
                   </property>
                  </widget>
                 </item>

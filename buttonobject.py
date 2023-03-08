@@ -33,3 +33,20 @@ class MyApp(QWidget):
 
         # db close
         conn.close()
+
+    def btnmoneyClick(self, mainid, mainname, todayDate):
+        conn = sqlite3.connect("inmanage.db", isolation_level=None)
+        cs = conn.cursor()
+
+        reply = QMessageBox.question(self, '등록비 제출 알림!', mainname + ' 이(가) ' + todayDate + '에 등록비를 제출하였습니까?',
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            # 데이터 업데이트 하기
+            cs.execute("UPDATE student "
+                       + "SET moneyDate = ? WHERE id = ?", (todayDate, mainid,))
+        else:
+            pass
+
+        # db close
+        conn.close()

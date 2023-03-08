@@ -1,7 +1,9 @@
 import sys
+import os
 import sqlite3
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5 import uic
 import assignmodal
 import enrollmodal
@@ -39,9 +41,11 @@ class Main(QMainWindow, form_class):
             self.labelDate.setText(str(monVar)+"/"+str(dayVar)+"["+daysVar+"]")
 
             # 전역변수 선언
+            self.todayDate = self.dateEdit.text() # 오늘의 날짜
             self.mainId = "0" # 메인 id
             self.mainName = "" # 메인 이름
             self.stuId = ""  # 스케줄관리 탭의 학생 id
+            self.stuname = "" # 스케줄관리 탭의 학생 이름
             self.globalSchool = ""  # 스케줄관리 탭의 학교
             self.globalGrade = ""  # 스케줄관리 탭의 학년
             self.comboList = [] # 스케줄관리 탭의 교재 리스트
@@ -62,7 +66,7 @@ class Main(QMainWindow, form_class):
             # 1. 학생테이블
             cs.execute("CREATE TABLE IF NOT EXISTS student \
                     (id integer PRIMARY KEY, name text, sex text, age integer, school text, grade integer, schoolName text, \
-                    number text, parentName text, parentSex text, parentNumber text, registDate text)")
+                    number text, parentName text, parentSex text, parentNumber text, registDate text, moneyDate text)")
             # 2. 교재테이블
             cs.execute("CREATE TABLE IF NOT EXISTS textbook \
                     (bookid text, no text, bookname text, subjectName text, subjectName2 text, startPage text, endPage text, allPage text, \
@@ -97,9 +101,12 @@ class Main(QMainWindow, form_class):
             self.btnDelete.clicked.connect(lambda: self.buttonClick("delete")) # 인원삭제
             self.btnUpdate.clicked.connect(lambda: self.buttonClick("update")) # 인원수정
             self.btnSearch.clicked.connect(lambda: self.buttonClick("search")) # 인원검색
-            self.btnClear.clicked.connect(lambda: self.buttonClick("clear"))  # 스케줄관리 - 초기화 버튼클릭
+            self.btnMoney.clicked.connect(lambda: self.buttonClick("money"))  # 등록비제출
             self.btnLeft.clicked.connect(lambda: self.buttonClick("left")) # 스케줄관리 - ◀ 버튼클릭
             self.btnRight.clicked.connect(lambda: self.buttonClick("right")) # 스케줄관리 - ▶ 버튼클릭
+            self.btnYesterday.clicked.connect(lambda: self.buttonClick("yesterday"))  # 스케줄관리 - "전날과제 불러오기" 버튼클릭
+            self.btnClear.clicked.connect(lambda: self.buttonClick("clear"))  # 스케줄관리 - 초기화 버튼클릭
+            self.btnSaveSchedule.clicked.connect(lambda: self.buttonClick("saveschedule"))  # 스케줄관리 - 저장 버튼클릭
 
             # 메뉴 클릭
             self.action_book.triggered.connect(lambda: self.menuClick("book")) # 교재등록
@@ -172,6 +179,7 @@ class Main(QMainWindow, form_class):
                 self.tableWidget.setRowCount(len(returnList))
                 num = 0
                 for row in returnList:
+                    # 테이블에 값 넣기
                     self.tableWidget.setItem(num, 0, QTableWidgetItem(str(row[0])))
                     self.tableWidget.setItem(num, 1, QTableWidgetItem(str(row[1])))
                     self.tableWidget.setItem(num, 2, QTableWidgetItem(str(row[2])))
@@ -181,8 +189,27 @@ class Main(QMainWindow, form_class):
                     self.tableWidget.setItem(num, 6, QTableWidgetItem(str(row[7])))
                     self.tableWidget.setItem(num, 7, QTableWidgetItem(str(row[10])))
                     self.tableWidget.setItem(num, 8, QTableWidgetItem(str(row[11])))
-                    self.tableWidget.setItem(num, 9, QTableWidgetItem("-"))
+                    self.tableWidget.setItem(num, 9, QTableWidgetItem(str(row[12])))
+                    
+                    # 등록비 제출일과 오늘을 비교하여 제출해야되는지 알림
+                    today = self.todayDate.split('-')
+                    tdate = dt.datetime(int(today[0]), int(today[1]), int(today[2]))
+                    thisdate = row[12].split('-')
+                    edate = dt.datetime(int(thisdate[0]), int(thisdate[1]), int(thisdate[2]))
+                    date_diff = tdate - edate
+                    diff = date_diff.days
+                    print(diff)
+                    if diff >= 30:
+                        self.tableWidget.setItem(num, 10, QTableWidgetItem("[X경고X][D+"+str(diff)+"]"))
+                    else :
+                        self.tableWidget.setItem(num, 10, QTableWidgetItem("[O완료O][D-"+str(30 - diff)+"]"))
+
+                    # 숫자 증가
                     num += 1
+
+            elif what == "money":
+                buttonobject.MyApp.btnmoneyClick(self, self.mainId, self.mainName, self.todayDate)
+
             elif what == "clear":
                 self.scheduleClear()
 
@@ -207,6 +234,187 @@ class Main(QMainWindow, form_class):
                 dayVar = after_one_day.day
                 dateVar = QDate(yearVar, monVar, dayVar)
                 self.dateEdit.setDate(dateVar)
+
+            elif what == "yesterday":
+                thisdate = self.dateEdit.text().split('-')
+                now = dt.datetime(int(thisdate[0]), int(thisdate[1]), int(thisdate[2]))
+                before_one_day = now - dt.timedelta(days=1)
+                yearVar = before_one_day.year
+                monVar = before_one_day.month
+                dayVar = before_one_day.day
+                montext = str(monVar)
+                daytext = str(dayVar)
+                if monVar < 10 :
+                    montext = "0" + str(monVar)
+                if dayVar < 10 :
+                    daytext = "0" + str(dayVar)
+                dateText = str(yearVar) + "-" + montext + "-" + daytext
+
+                # db connect
+                conn = sqlite3.connect("inmanage.db", isolation_level=None)
+                cs = conn.cursor()
+
+                # 데이터넣기
+                cs.execute("SELECT assign1, assign2, assign3, assign4 FROM schedule WHERE id =? and datetime =?", (self.stuId, dateText,))
+                dataList = cs.fetchone()
+                for i in range(0, 4):
+                    if dataList[i] == "|||False|0":
+                        continue
+
+                    assign = dataList[i].split('|')
+                    if i == 0:
+                        self.combosch1.setCurrentText(assign[0])
+                        self.combobook.setCurrentText(assign[1])
+                        self.labelText1.setText(assign[2])
+                        if assign[3] == "True":
+                            self.checkBox.setCheckState(2)  # 2: True, 0: False
+                        else :
+                            self.checkBox.setCheckState(0)  # 2: True, 0: False
+                    if i == 1:
+                        self.combosch2.setCurrentText(assign[0])
+                        self.combobook_2.setCurrentText(assign[1])
+                        self.labelText2.setText(assign[2])
+                        if assign[3] == "True":
+                            self.checkBox_2.setCheckState(2)  # 2: True, 0: False
+                        else :
+                            self.checkBox_2.setCheckState(0)  # 2: True, 0: False
+                    if i == 2:
+                        self.combosch3.setCurrentText(assign[0])
+                        self.combobook_3.setCurrentText(assign[1])
+                        self.labelText3.setText(assign[2])
+                        if assign[3] == "True":
+                            self.checkBox_3.setCheckState(2)  # 2: True, 0: False
+                        else :
+                            self.checkBox_3.setCheckState(0)  # 2: True, 0: False
+                    if i == 3:
+                        self.combosch4.setCurrentText(assign[0])
+                        self.combobook_4.setCurrentText(assign[1])
+                        self.labelText4.setText(assign[2])
+                        if assign[3] == "True":
+                            self.checkBox_4.setCheckState(2)  # 2: True, 0: False
+                        else :
+                            self.checkBox_4.setCheckState(0)  # 2: True, 0: False
+
+                # 페이지 번호넣기
+                cs.execute("SELECT * FROM progress WHERE id =? and datetime =? and position >=5 and position <=8", (self.stuId, dateText,))
+                resultList = cs.fetchall()
+
+                for re in resultList:
+                    print(re[2], re[3])
+                    if re[6] == '5':
+                        self.stpageList[0] = re[2]
+                        self.edpageList[0] = re[3]
+                    elif re[6] == '6':
+                        self.stpageList[1] = re[2]
+                        self.edpageList[1] = re[3]
+                    elif re[6] == '7':
+                        self.stpageList[2] = re[2]
+                        self.edpageList[2] = re[3]
+                    elif re[6] == '8':
+                        self.stpageList[3] = re[2]
+                        self.edpageList[3] = re[3]
+
+            elif what == "saveschedule":
+                # db connect
+                conn = sqlite3.connect("inmanage.db", isolation_level=None)
+                cs = conn.cursor()
+
+                reply = QMessageBox.question(self, '알림창!!', '저장하시겠습니까?',
+                                             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    # 해당 교재의 모든항목을 삭제
+                    stid = self.stuId
+                    stdatetime = self.dateEdit.text()
+                    cs.execute("DELETE FROM schedule WHERE id =? and datetime =?", (stid, stdatetime,))
+
+                    # schedule 테이블에 데이터 저장하기
+                    content1 = self.combosch1.currentText() + "|" + self.combobook.currentText() + "|" + self.labelText1.text() + "|" + str(
+                        self.checkBox.isChecked()) + "|" + str(self.combobook.currentIndex())
+                    content2 = self.combosch2.currentText() + "|" + self.combobook_2.currentText() + "|" + self.labelText2.text() + "|" + str(
+                        self.checkBox_2.isChecked()) + "|" + str(self.combobook_2.currentIndex())
+                    content3 = self.combosch3.currentText() + "|" + self.combobook_3.currentText() + "|" + self.labelText3.text() + "|" + str(
+                        self.checkBox_3.isChecked()) + "|" + str(self.combobook_3.currentIndex())
+                    content4 = self.combosch4.currentText() + "|" + self.combobook_4.currentText() + "|" + self.labelText4.text() + "|" + str(
+                        self.checkBox_4.isChecked()) + "|" + str(self.combobook_4.currentIndex())
+                    assign1 = self.combosch5.currentText() + "|" + self.combobook_5.currentText() + "|" + self.labelText5.text() + "|" + str(
+                        self.checkBox_5.isChecked()) + "|" + str(self.combobook_5.currentIndex())
+                    assign2 = self.combosch6.currentText() + "|" + self.combobook_6.currentText() + "|" + self.labelText6.text() + "|" + str(
+                        self.checkBox_6.isChecked()) + "|" + str(self.combobook_6.currentIndex())
+                    assign3 = self.combosch7.currentText() + "|" + self.combobook_7.currentText() + "|" + self.labelText7.text() + "|" + str(
+                        self.checkBox_7.isChecked()) + "|" + str(self.combobook_7.currentIndex())
+                    assign4 = self.combosch8.currentText() + "|" + self.combobook_8.currentText() + "|" + self.labelText8.text() + "|" + str(
+                        self.checkBox_8.isChecked()) + "|" + str(self.combobook_8.currentIndex())
+                    notice1 = self.lineEditNotice1.text()
+                    notice2 = self.lineEditNotice2.text()
+                    if content1 == "|||False|0" and content2 == "|||False|0" and content3 == "|||False|0" and content4 == "|||False|0" and assign1 == "|||False|0" and assign2 == "|||False|0" and assign3 == "|||False|0" and assign4 == "|||False|0":
+                        pass
+                    else:
+                        insert_list = (
+                            (stid, stdatetime, content1, content2, content3, content4, assign1, assign2, assign3,
+                             assign4, notice1, notice2)
+                        )
+                        cs.execute("INSERT INTO schedule(id, datetime, content1, content2, content3, content4, assign1, assign2, assign3, assign4, notice1, notice2) \
+                                                    VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", insert_list)
+
+                    # progress 테이블에 데이터 저장하기
+                    contentlist1 = content1.split('|')
+                    contentlist2 = content2.split('|')
+                    contentlist3 = content3.split('|')
+                    contentlist4 = content4.split('|')
+                    assignlist1 = assign1.split('|')
+                    assignlist2 = assign2.split('|')
+                    assignlist3 = assign3.split('|')
+                    assignlist4 = assign4.split('|')
+                    emptyBoolList = [contentlist1[4], contentlist2[4], contentlist3[4], contentlist4[4], assignlist1[4],
+                                     assignlist2[4], assignlist3[4], assignlist4[4]]
+                    checkBoxBoolList = [contentlist1[3], contentlist2[3], contentlist3[3], contentlist4[3],
+                                        assignlist1[3], assignlist2[3], assignlist3[3], assignlist4[3]]
+                    # 해당 일자의 데이터는 일단 모두 제거
+                    cs.execute("DELETE FROM progress WHERE id =? and datetime =?", (stid, stdatetime,))
+                    for i in range(0, 8):
+                        if emptyBoolList[i] == "0":
+                            continue
+                        else:
+                            if checkBoxBoolList[i] == "True":
+                                insert_list2 = ((
+                                stid, self.comboList[int(emptyBoolList[i]) - 1], self.stpageList[i], self.edpageList[i],
+                                stdatetime, "진행중", str(i + 1)))
+                            else:
+                                insert_list2 = ((
+                                stid, self.comboList[int(emptyBoolList[i]) - 1], self.stpageList[i], self.edpageList[i],
+                                stdatetime, "완료", str(i + 1)))
+                        # 시작페이지가 없다면 저장하지않는다.
+                        if self.stpageList[i] == "":
+                            continue
+                        # 시작페이지가 있다면 저장한다.
+                        else:
+                            cs.execute(
+                                "SELECT COUNT(*) FROM progress WHERE id =? and bookname =? and startPage =? and strftime('%Y-%m-%d', datetime, 'localtime') <= strftime('%Y-%m-%d', ?, 'localtime')",
+                                (stid, self.comboList[int(emptyBoolList[i]) - 1], self.stpageList[i], stdatetime,))
+                            result = cs.fetchone()
+                            print(result)
+                            # 과거에 해당 시작페이지가 progress에 존재하지않다면 추가하기
+                            if result[0] == 0:
+                                cs.execute(
+                                    "INSERT INTO progress(id, bookname, startPage, endPage, datetime, remark, position) VALUES(?,?,?,?,?,?,?)",
+                                    insert_list2)
+                            # 과거에 해당 시작페이지가 progress에 존재한다면 과거데이터는 제거하고 추가하기
+                            else:
+                                cs.execute(
+                                    "DELETE FROM progress WHERE id =? and startPage =? and strftime('%Y-%m-%d', datetime, 'localtime') <= strftime('%Y-%m-%d', ?, 'localtime')",
+                                    (stid, self.stpageList[i], stdatetime,))
+                                cs.execute(
+                                    "INSERT INTO progress(id, bookname, startPage, endPage, datetime, remark, position) VALUES(?,?,?,?,?,?,?)",
+                                    insert_list2)
+
+                    # db close
+                    conn.close()
+
+                else:
+                    # db close
+                    conn.close()
+                    return
+
         except:
             traceback.print_exc()
 
@@ -219,93 +427,16 @@ class Main(QMainWindow, form_class):
             elif what == "assign":
                 modal = assignmodal.MyModal(self) # 모달 띄우기
             elif what == "save":
-                # db connect
-                conn = sqlite3.connect("inmanage.db", isolation_level=None)
-                cs = conn.cursor()
-
-                reply = QMessageBox.question(self, '알림창!!', '저장하시겠습니까?',
-                                             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-                if reply == QMessageBox.Yes:
-                    # 해당 교재의 모든항목을 삭제
-                    stid = self.stuId
-                    stdatetime = self.dateEdit.text()
-                    cs.execute("DELETE FROM schedule WHERE id =? and datetime =?", (stid, stdatetime, ))
-
-                    # schedule 테이블에 데이터 저장하기
-                    content1 = self.combosch1.currentText() + "|" + self.combobook.currentText() + "|" + self.labelText1.text() + "|" + str(self.checkBox.isChecked()) + "|" + str(self.combobook.currentIndex())
-                    content2 = self.combosch2.currentText() + "|" + self.combobook_2.currentText() + "|" + self.labelText2.text() + "|" + str(self.checkBox_2.isChecked()) + "|" + str(self.combobook_2.currentIndex())
-                    content3 = self.combosch3.currentText() + "|" + self.combobook_3.currentText() + "|" + self.labelText3.text() + "|" + str(self.checkBox_3.isChecked()) + "|" + str(self.combobook_3.currentIndex())
-                    content4 = self.combosch4.currentText() + "|" + self.combobook_4.currentText() + "|" + self.labelText4.text() + "|" + str(self.checkBox_4.isChecked()) + "|" + str(self.combobook_4.currentIndex())
-                    assign1 = self.combosch5.currentText() + "|" + self.combobook_5.currentText() + "|" + self.labelText5.text() + "|" + str(self.checkBox_5.isChecked()) + "|" + str(self.combobook_5.currentIndex())
-                    assign2 = self.combosch6.currentText() + "|" + self.combobook_6.currentText() + "|" + self.labelText6.text() + "|" + str(self.checkBox_6.isChecked()) + "|" + str(self.combobook_6.currentIndex())
-                    assign3 = self.combosch7.currentText() + "|" + self.combobook_7.currentText() + "|" + self.labelText7.text() + "|" + str(self.checkBox_7.isChecked()) + "|" + str(self.combobook_7.currentIndex())
-                    assign4 = self.combosch8.currentText() + "|" + self.combobook_8.currentText() + "|" + self.labelText8.text() + "|" + str(self.checkBox_8.isChecked()) + "|" + str(self.combobook_8.currentIndex())
-                    notice1 = self.lineEditNotice1.text()
-                    notice2 = self.lineEditNotice2.text()
-                    if content1 == "|||False|0" and content2 == "|||False|0" and content3 == "|||False|0" and content4 == "|||False|0" and assign1 == "|||False|0" and assign2 == "|||False|0" and assign3 == "|||False|0" and assign4 == "|||False|0":
-                        return
-                    insert_list = (
-                        (stid, stdatetime, content1, content2, content3, content4, assign1, assign2, assign3, assign4, notice1, notice2)
-                    )
-                    cs.execute("INSERT INTO schedule(id, datetime, content1, content2, content3, content4, assign1, assign2, assign3, assign4, notice1, notice2) \
-                                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", insert_list)
-                    
-                    # progress 테이블에 데이터 저장하기
-                    contentlist1 = content1.split('|')
-                    contentlist2 = content2.split('|')
-                    contentlist3 = content3.split('|')
-                    contentlist4 = content4.split('|')
-                    assignlist1 = assign1.split('|')
-                    assignlist2 = assign2.split('|')
-                    assignlist3 = assign3.split('|')
-                    assignlist4 = assign4.split('|')
-                    emptyBoolList = [contentlist1[4], contentlist2[4], contentlist3[4], contentlist4[4], assignlist1[4], assignlist2[4], assignlist3[4], assignlist4[4]]
-                    checkBoxBoolList = [contentlist1[3], contentlist2[3], contentlist3[3], contentlist4[3], assignlist1[3], assignlist2[3], assignlist3[3], assignlist4[3]]
-                    # 해당 일자의 데이터는 일단 모두 제거
-                    cs.execute("DELETE FROM progress WHERE id =? and datetime =?", (stid, stdatetime,))
-                    for i in range(0, 8):
-                        if emptyBoolList[i] == "0":
-                            continue
-                        else :
-                            if checkBoxBoolList[i] == "True":
-                                insert_list2 = ((stid, self.comboList[int(emptyBoolList[i])-1], self.stpageList[i], self.edpageList[i], stdatetime, "진행중", str(i+1)))
-                            else :
-                                insert_list2 = ((stid, self.comboList[int(emptyBoolList[i])-1], self.stpageList[i], self.edpageList[i], stdatetime, "완료", str(i+1)))
-                        # 시작페이지가 없다면 저장하지않는다.
-                        if self.stpageList[i] == "":
-                            continue
-                        # 시작페이지가 있다면 저장한다.
-                        else :
-                            cs.execute("SELECT COUNT(*) FROM progress WHERE id =? and bookname =? and startPage =? and strftime('%Y-%m-%d', datetime, 'localtime') <= strftime('%Y-%m-%d', ?, 'localtime')", (stid, self.comboList[int(emptyBoolList[i])-1], self.stpageList[i], stdatetime,))
-                            result = cs.fetchone()
-                            # 과거에 해당 시작페이지가 progress에 존재하지않다면 추가하기
-                            if result[0] == 0:
-                                cs.execute("INSERT INTO progress(id, bookname, startPage, endPage, datetime, remark, position) VALUES(?,?,?,?,?,?,?)", insert_list2)
-                            # 과거에 해당 시작페이지가 progress에 존재한다면 과거데이터는 제거하고 추가하기
-                            else:
-                                cs.execute("DELETE FROM progress WHERE id =? and startPage =? and strftime('%Y-%m-%d', datetime, 'localtime') <= strftime('%Y-%m-%d', ?, 'localtime')", (stid, self.stpageList[i], stdatetime,))
-                                cs.execute("INSERT INTO progress(id, bookname, startPage, endPage, datetime, remark, position) VALUES(?,?,?,?,?,?,?)", insert_list2)
-                    
-                    # db close
-                    conn.close()
-
-                else:
-                    # db close
-                    conn.close()
-                    return
-
                 # 이미지로 저장하기
-                # 해당일자폴더만들기 => 학교_학년_이름_일자.png 만들기
-
+                self.screenShot()
         except:
             traceback.print_exc()
 
-            # db close
-            conn.close()
 
     def tableCellClicked(self, row, col):
         self.mainId = self.tableWidget.item(row, 0).text()
         self.mainName = self.tableWidget.item(row, 1).text()
+
 
     def checkboxReleased(self, seq):
         try :
@@ -368,10 +499,28 @@ class Main(QMainWindow, form_class):
         except:
             traceback.print_exc()
 
+
     # ------------------------------------------------------------------------
     # 스케줄관리 탭
+    def screenShot(self):
+        dateText = self.dateEdit.text()
+        dirpath = "schedule/" + dateText
+        if not os.path.exists(dirpath):
+            os.makedirs(dirpath)
+        filename = self.globalSchool + "_" + self.globalGrade + "_" + self.stuname + "_" + dateText
+
+        filepath = dirpath + "/" + filename
+        stX = 155
+        stY = 45
+        width = 800 - stX
+        height = 600 - stY - 20
+        grab = self.grab(QRect(stX,stY,width,height))
+        grab.save(filepath + '.png', 'png')
+
+
     def dateChange(self):
         self.searchScheData()
+
 
     def scheduleClear(self):
         # 날짜 : 월-일[요일] 형식으로 넣기
@@ -424,6 +573,7 @@ class Main(QMainWindow, form_class):
         # 시작, 끝 페이지 초기화
         self.stpageList = ["", "", "", "", "", "", "", ""]
         self.edpageList = ["", "", "", "", "", "", "", ""]
+
 
     def searchScheData(self):
         try :
@@ -558,12 +708,11 @@ class Main(QMainWindow, form_class):
                 print(self.edpageList)
                 # db close
                 conn.close()
-
         except:
             traceback.print_exc()
-
             # db close
             conn.close()
+
 
     def combobookChange(self, bookname, index, seq):
         try:
@@ -622,6 +771,7 @@ class Main(QMainWindow, form_class):
         except:
             traceback.print_exc()
 
+
     def listWidgetClick(self):
         try:
             # db connect
@@ -647,9 +797,9 @@ class Main(QMainWindow, form_class):
             self.combobook_8.addItem("")
 
             # 해당 인원의 ID 찾기
-            stuname = self.listWidget.currentItem().text() # 클릭한 list의 값 = 학생이름
+            self.stuname = self.listWidget.currentItem().text() # 클릭한 list의 값 = 학생이름
             cs.execute("SELECT id FROM student WHERE name =? and school =? and grade =?",
-                       (stuname, self.globalSchool, self.globalGrade,))
+                       (self.stuname, self.globalSchool, self.globalGrade,))
             namelist = cs.fetchone()
             self.stuId = namelist[0]
             if namelist == None:
@@ -682,7 +832,7 @@ class Main(QMainWindow, form_class):
             conn.close()
 
             # 양식에 이름 넣기
-            self.labelName.setText(stuname)
+            self.labelName.setText(self.stuname)
 
             # 조회하기
             self.searchScheData()
@@ -934,6 +1084,7 @@ class Main(QMainWindow, form_class):
             traceback.print_exc()
             # db close
             conn.close()
+
 
 
 if __name__ == "__main__":

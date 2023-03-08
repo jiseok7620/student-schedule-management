@@ -45,6 +45,11 @@ class MyModal(QDialog):
             # 신규등록버튼 비활성화, ID에 선택된 셀의 id넣기
             self.btnnewenroll.setDisabled(True)
             self.textId.setText(str(mainId))
+
+            # 등록일 칸 모두 비활성화
+            self.textYear.setDisabled(True)
+            self.textMonth.setDisabled(True)
+            self.textDay.setDisabled(True)
             
             # 해당 id의 데이터 조회해오기
             cs.execute("SELECT * FROM student WHERE id =?", (mainId,))
@@ -120,10 +125,10 @@ class MyModal(QDialog):
 
             # 데이터 넣기
             insert_list = (
-                (id, name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, registDate)
+                (id, name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, registDate, registDate)
             )
-            cs.execute("INSERT INTO student(id, name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, registDate) \
-                                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", insert_list)
+            cs.execute("INSERT INTO student(id, name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, registDate, moneyDate) \
+                                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", insert_list)
 
             # db close
             conn.close()
@@ -157,15 +162,14 @@ class MyModal(QDialog):
             parentName = self.textParentName.text()
             parentSex = self.comboParent.currentText()
             parentNumber = self.textParentNumber1.text() + "-" + self.textParentNumber2.text() + "-" + self.textParentNumber3.text()
-            registDate = self.textYear.text() + "-" + self.textMonth.text() + "-" + self.textDay.text()
 
             # 데이터 넣기
             insert_list = (
-                (name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, registDate, id)
+                (name, sex, age, school, grade, schoolName, number, parentName, parentSex, parentNumber, id)
             )
             cs.execute("UPDATE student "
                         + "SET name = ?, sex = ?, age = ?, school = ?, grade = ?, schoolName = ?, "
-                        + "number = ?, parentName = ?, parentSex = ?, parentNumber = ?, registDate =? "
+                        + "number = ?, parentName = ?, parentSex = ?, parentNumber = ? "
                         + "WHERE id = ?", insert_list)
 
             # db close

@@ -1,7 +1,7 @@
 1. 인원테이블(student)
 CREATE TABLE IF NOT EXISTS student
 :id(primary key), 이름(name), 성별(sex), 나이(age), 학교(school), 학년(grade), 학교명(schoolName)
-,전화번호(number), 부모님성명(parentName), 부모님성별(parentSex), 부모님번호(parentNumber), 등록일(registDate)
+,전화번호(number), 부모님성명(parentName), 부모님성별(parentSex), 부모님번호(parentNumber), 등록일(registDate), 등록비제출일(moneyDate)
 
 2. 인원당 사용교재테이블(textbookperman)
 CREATE TABLE IF NOT EXISTS textbookperman
