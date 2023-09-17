@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>577</height>
+    <width>639</width>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -121,9 +121,9 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,2">
        <property name="spacing">
-        <number>0</number>
+        <number>5</number>
        </property>
        <property name="leftMargin">
         <number>2</number>
@@ -167,6 +167,25 @@
          <column>
           <property name="text">
            <string>진행도</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget2">
+         <column>
+          <property name="text">
+           <string>교재명</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>단원명</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>평가명</string>
           </property>
          </column>
         </widget>

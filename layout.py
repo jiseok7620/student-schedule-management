@@ -47,76 +47,94 @@ class MainLayout():
                                        "background-color: #D99694;"
                                        "padding: 6px;"
                                        "font: bold 15pt")
-        self.object.labelf1.setStyleSheet(
+        self.object.checkBox.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf2.setStyleSheet(
+        self.object.checkBox_2.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf3.setStyleSheet(
+        self.object.checkBox_3.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf4.setStyleSheet(
+        self.object.checkBox_4.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf5.setStyleSheet(
+        self.object.checkBox_5.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf6.setStyleSheet(
+        self.object.checkBox_6.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf7.setStyleSheet(
+        self.object.checkBox_7.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf8.setStyleSheet(
+        self.object.checkBox_8.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
                         "border-top-width: 1px;"
                         "border-top-color: #BFBFBF;"
                         "border-top-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf9.setStyleSheet(
+        self.object.checkBox_9.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
-        self.object.labelf10.setStyleSheet(
+        self.object.checkBox_10.setStyleSheet(
                         "border-left-width: 1px;"
                         "border-left-color: #BFBFBF;"
                         "border-left-style: solid;"
@@ -126,6 +144,8 @@ class MainLayout():
                         "border-bottom-width: 1px;"
                         "border-bottom-color: #BFBFBF;"
                         "border-bottom-style: solid;"
+                        "padding-left: 10px;"
+                        "padding-right: 10px;"
                         "background-color: white")
         self.object.labelText1.setStyleSheet(
                         "border-left-width: 1px;"
